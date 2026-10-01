@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#071018">
-  <meta name="description" content="A clear guide to passive income, with practical RD and FD calculators.">
-  <title>finclarity.in — Passive Income Guide</title>
+  <meta name="description" content="Clear investment and financial saving options, with practical RD and FD calculators.">
+  <title>finclarity.in — Investment and Saving Guide</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2347e3b1'/%3E%3Cpath d='M8 21h4v4H8zm6-6h4v10h-4zm6-7h4v17h-4z' fill='%23041511'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -20,7 +20,7 @@
         <a class="active" href="index.html">Explore</a>
         <a href="rd.html">RD calculator</a>
         <a href="fd.html">FD calculator</a>
-        <a href="post-office.html">Post Office</a>
+        <a href="#post-office-schemes">Post Office schemes</a>
       </div>
     </nav>
   </header>
@@ -29,10 +29,10 @@
     <section class="hero shell">
       <div>
         <p class="eyebrow">Financial learning, simplified</p>
-        <h1>Build income that works <span>in the background.</span></h1>
+        <h1>Make clearer choices for <span>investing and saving.</span></h1>
       </div>
       <div class="hero-copy">
-        <p>Understand steady income choices, compare how they work, and use practical calculators before you commit your money.</p>
+        <p>Compare saving and investment options, understand how they work, and use practical calculators before you commit your money.</p>
       </div>
     </section>
 
@@ -43,13 +43,25 @@
       <span><strong>03</strong> Compare against inflation</span>
     </div>
 
-    <section class="shell" aria-labelledby="categories-title">
+    <section class="shell investment-catalog" id="post-office-schemes" aria-labelledby="categories-title">
       <div class="section-head">
-        <h2 id="categories-title">Passive income pathways</h2>
+        <h2 id="categories-title">Investment and financial saving options</h2>
         <p>Different options trade certainty, access and growth. Begin with the category that matches your time horizon.</p>
       </div>
-      <div class="category-grid">
-        <article class="category-card featured">
+      <div class="tag-filters" role="group" aria-label="Filter investment options">
+        <button class="tag-filter active" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="tag-filter" type="button" data-filter="deposits" aria-pressed="false">Deposits</button>
+        <button class="tag-filter" type="button" data-filter="postoffice" aria-pressed="false">Post Office</button>
+        <button class="tag-filter" type="button" data-filter="bank" aria-pressed="false">Bank</button>
+        <button class="tag-filter" type="button" data-filter="govt-backed" aria-pressed="false">Govt backed</button>
+        <button class="tag-filter" type="button" data-filter="monthly-income" aria-pressed="false">Monthly income</button>
+        <button class="tag-filter" type="button" data-filter="retirement" aria-pressed="false">Retirement</button>
+        <button class="tag-filter" type="button" data-filter="long-term" aria-pressed="false">Long term</button>
+        <button class="tag-filter" type="button" data-filter="market-linked" aria-pressed="false">Market linked</button>
+      </div>
+      <p class="filter-status" id="filter-status" aria-live="polite">Showing all investment options</p>
+      <div class="investment-grid" id="investment-grid">
+        <article class="category-card featured investment-tile" data-tags="deposits recurring monthly fixed bank">
           <span class="card-kicker">Featured subcategory</span>
           <h3>Recurring Deposit (RD)</h3>
           <p>Put away a fixed amount each month and earn predictable interest. A structured way to build a lump sum without investing it all at once.</p>
@@ -58,28 +70,33 @@
             <a class="arrow-button" href="rd.html" aria-label="Open the RD guide">→</a>
           </div>
         </article>
-        <article class="category-card">
+        <article class="category-card investment-tile" data-tags="deposits fixed lump-sum bank postoffice monthly-income senior income">
           <span class="card-kicker">Lump-sum saving</span>
           <h3>Fixed Deposit (FD)</h3>
-          <p>Lock in a lump sum at an agreed rate, estimate its maturity value, and understand tax, access and deposit protection.</p>
-          <div class="card-meta"><span>Fixed rate · Flexible tenure</span><a class="arrow-button" href="fd.html" aria-label="Open the FD guide">→</a></div>
+          <p>Compare bank and NBFC FDs with Post Office Time Deposit and Monthly Income Account payout options.</p>
+          <div class="tile-tags"><span>Monthly income</span><span>Bank</span><span>Post Office</span></div>
+          <div class="card-meta"><span>Compounding or regular income</span><a class="arrow-button" href="fd.html" aria-label="Open the FD and fixed-income guide">→</a></div>
         </article>
-        <article class="category-card">
-          <span class="card-kicker">Government small savings</span>
-          <h3>Post Office Deposits</h3>
-          <p>Compare the five-year Post Office RD and one-, two-, three-, and five-year Time Deposit rates, with a clear explanation of IPPB.</p>
-          <div class="card-meta"><span>Government scheme · Fixed rates</span><a class="arrow-button" href="post-office.html" aria-label="Open the Post Office guide">→</a></div>
-        </article>        <article class="category-card">
+        <a class="po-scheme-tile investment-tile" id="scss-scheme-card" data-tags="postoffice bank monthly-income deposits fixed senior income government govt-backed quarterly" href="post-office-scss.html"><span>Quarterly retirement income</span><h3>Senior Citizens Savings Scheme (SCSS)</h3><strong>8.20%</strong><p>A five-year Government-backed deposit for eligible senior and retired applicants. Interest is paid quarterly, with total deposits allowed up to ₹30 lakh.</p><div class="tile-tags"><span>Post Office</span><span>Bank</span><span>Monthly income</span><span>Govt backed</span></div><small>View details & estimate →</small></a>
+        <article class="category-card investment-tile" data-tags="market-linked dividend long-term variable">
           <span class="card-kicker">Market linked</span>
           <h3>Dividend investing</h3>
           <p>Own shares or funds that may distribute part of their earnings to investors.</p>
           <div class="card-meta"><span>Variable return · Long term</span></div>
         </article>
+        <a class="po-scheme-tile investment-tile" data-tags="government govt-backed bank postoffice market-linked long-term pension retirement tax-benefit" href="nps.html"><span>Retirement investing</span><h3>National Pension System (NPS)</h3><strong>Market-linked</strong><p>Build a portable retirement corpus through regulated pension funds, then choose a permitted mix of lump-sum withdrawal and annuity income at exit.</p><div class="tile-tags"><span>Govt backed</span><span>Bank</span><span>Post Office</span><span>Retirement</span></div><small>View details & estimate →</small></a>
+        <a class="po-scheme-tile investment-tile" data-tags="government govt-backed bank postoffice monthly-income pension retirement guaranteed" href="apy.html"><span>Guaranteed pension</span><h3>Atal Pension Yojana (APY)</h3><strong>₹1,000–₹5,000</strong><p>Choose a Government-guaranteed monthly pension from age 60. Contributions depend on joining age and the pension amount selected.</p><div class="tile-tags"><span>Govt backed</span><span>Bank</span><span>Post Office</span><span>Retirement</span></div><small>View details & contribution →</small></a>
+        <a class="po-scheme-tile investment-tile" data-tags="postoffice savings flexible government" href="post-office-savings.html"><span>Flexible savings</span><h3>Post Office Savings Account</h3><strong>4.00%</strong><p>Annual interest credit with ongoing account access.</p><small>View details & estimate →</small></a>
+        <a class="po-scheme-tile investment-tile" data-tags="postoffice long-term savings government govt-backed" href="post-office-ppf.html"><span>Long-term saving</span><h3>Public Provident Fund</h3><strong>7.10%</strong><p>Fifteen-year account with annual interest credit.</p><div class="tile-tags"><span>Govt backed</span></div><small>View details & estimate →</small></a>
+        <a class="po-scheme-tile investment-tile" data-tags="postoffice long-term child savings government govt-backed" href="post-office-sukanya.html"><span>Girl-child savings</span><h3>Sukanya Samriddhi Account</h3><strong>8.20%</strong><p>Long-term saving for an eligible girl child.</p><div class="tile-tags"><span>Govt backed</span></div><small>View details & estimate →</small></a>
+        <a class="po-scheme-tile investment-tile" data-tags="postoffice deposits fixed long-term compound government govt-backed" href="post-office-nsc.html"><span>Compound growth</span><h3>National Savings Certificate</h3><strong>7.70%</strong><p>Five-year annual compounding with maturity payout.</p><div class="tile-tags"><span>Govt backed</span></div><small>View details & estimate →</small></a>
+        <a class="po-scheme-tile investment-tile" data-tags="postoffice bank deposits fixed long-term growth government govt-backed certificate" href="post-office-kvp.html"><span>Government-backed certificate</span><h3>Kisan Vikas Patra (KVP)</h3><strong>7.50%</strong><p>Invest from ₹1,000 with no maximum limit. The current term doubles the deposit in 115 months; eligible premature closure begins after 2 years and 6 months.</p><div class="tile-tags"><span>Post Office</span><span>Authorised banks</span><span>Govt backed</span></div><small>View details & estimate →</small></a>
       </div>
+      <p class="po-rate-note">Rates shown are the Government-notified October–December 2026 rates. Some scheme rates can change in later quarters.</p>
     </section>
 
     <section class="insight-band shell" aria-labelledby="principle-title">
-      <h2 id="principle-title">A useful passive-income plan balances three things.</h2>
+      <h2 id="principle-title">A useful financial plan balances three things.</h2>
       <div class="insight-points">
         <div><strong>Return</strong><span>What your money may earn over time.</span></div>
         <div><strong>Access</strong><span>How quickly you can use the money again.</span></div>
@@ -89,9 +106,9 @@
   </main>
 
   <footer><div class="footer-row shell"><span>© 2026 finclarity.in</span><span>Educational information only — not financial advice.</span></div></footer>
+  <script src="home.js"></script>
 </body>
 </html>
-
 
 
 

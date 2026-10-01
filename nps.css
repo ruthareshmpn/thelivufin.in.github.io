@@ -1,0 +1,11 @@
+.nps-badges { display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
+.nps-badges span { padding:7px 10px; color:#b9d8ff; border:1px solid rgba(159,202,255,.2); border-radius:999px; background:rgba(159,202,255,.06); font-size:.72rem; font-weight:720; }
+.nps-alert { padding:18px 20px; border:1px solid rgba(244,196,107,.28); border-radius:18px; background:rgba(244,196,107,.06); }
+.nps-alert strong { color:var(--amber); }
+.nps-alert p { margin:5px 0 0; color:var(--muted); font-size:.84rem; line-height:1.6; }
+.nps-form { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); align-items:end; gap:12px; margin-top:22px; }
+.nps-form label { display:grid; gap:7px; color:var(--muted); font-size:.72rem; font-weight:720; }
+.nps-form input { width:100%; padding:12px; color:var(--ink); border:0; background:transparent; font:inherit; }
+.nps-form .button { min-height:46px; border:0; cursor:pointer; }
+.nps-results { grid-template-columns:repeat(3,minmax(0,1fr)); }
+@media (max-width:820px) { .nps-form,.nps-results { grid-template-columns:1fr; } }

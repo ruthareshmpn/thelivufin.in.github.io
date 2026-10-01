@@ -20,7 +20,7 @@
         <a href="index.html">Explore</a>
         <a href="rd.html">RD calculator</a>
         <a class="active" href="fd.html">FD calculator</a>
-        <a href="post-office.html">Post Office</a>
+        <a href="index.html#post-office-schemes">Post Office schemes</a>
       </div>
     </nav>
   </header>
@@ -61,6 +61,13 @@
           <div class="range-scale"><span>1 month</span><span>10 years</span></div>
         </div>
         <div class="field compact-field">
+          <label for="fd-interest-mode">Interest treatment</label>
+          <select id="fd-interest-mode">
+            <option value="cumulative" selected>Add interest to principal</option>
+            <option value="monthly-payout">Pay interest as monthly income</option>
+          </select>
+        </div>
+        <div class="field compact-field" id="fd-frequency-field">
           <label for="fd-frequency">Compounding frequency</label>
           <select id="fd-frequency">
             <option value="4" selected>Quarterly</option>
@@ -69,18 +76,18 @@
             <option value="1">Yearly</option>
           </select>
         </div>
-        <p class="calc-note">This is a cumulative-FD estimate. Actual bank calculations can differ because of day-count rules, special-tenure rates, rounding, tax and premature closure.</p>
+        <p class="calc-note" id="fd-calculator-note">This is a cumulative-FD estimate. Actual bank calculations can differ because of day-count rules, special-tenure rates, rounding, tax and premature closure.</p>
       </form>
 
       <section class="result-panel fd-result-panel" aria-live="polite" aria-atomic="true">
         <h2>Estimated outcome</h2>
-        <span class="result-label">Maturity amount</span>
+        <span class="result-label" id="fd-primary-label">Maturity amount</span>
         <strong class="maturity" id="fd-maturity">₹1,20,890</strong>
         <div class="result-grid">
           <div class="result-stat"><span>Amount invested</span><strong id="fd-invested">₹1,00,000</strong></div>
-          <div class="result-stat"><span>Interest earned</span><strong id="fd-interest">₹20,890</strong></div>
+          <div class="result-stat"><span id="fd-interest-label">Interest earned</span><strong id="fd-interest">₹20,890</strong></div>
           <div class="result-stat"><span>Tenure</span><strong id="fd-tenure-label">3 years</strong></div>
-          <div class="result-stat"><span>Effective annual yield</span><strong id="fd-yield">6.66%</strong></div>
+          <div class="result-stat"><span id="fd-yield-label">Effective annual yield</span><strong id="fd-yield">6.66%</strong></div>
           <div class="result-stat fd-tax-stat"><span>Estimated taxable interest</span><strong id="fd-taxable">₹20,890</strong><small>FD interest is generally taxable at your applicable slab rate. This estimate does not deduct tax or TDS.</small></div>
         </div>
         <div class="growth-visual" aria-label="Deposit and interest proportion">
@@ -90,14 +97,14 @@
         <div class="fd-compound-schedule">
           <div class="fd-compound-head">
             <div>
-              <span class="result-label">Compounding schedule</span>
+              <span class="result-label" id="fd-schedule-label">Compounding schedule</span>
               <strong id="fd-schedule-title">Quarterly interest credits</strong>
             </div>
             <small id="fd-schedule-count">12 periods</small>
           </div>
           <div class="fd-schedule-table-wrap">
             <table class="fd-schedule-table">
-              <thead><tr><th>Frequency period</th><th>Interest added</th><th>Total amount</th></tr></thead>
+              <thead><tr><th id="fd-schedule-period-heading">Frequency period</th><th id="fd-schedule-interest-heading">Interest added</th><th id="fd-schedule-total-heading">Total amount</th></tr></thead>
               <tbody id="fd-schedule-body"></tbody>
             </table>
           </div>
@@ -116,12 +123,38 @@
       </div>
     </section>
 
+    <section class="post-office-section shell" id="post-office-fixed-income" aria-labelledby="post-office-fixed-income-title">
+      <div class="post-office-card">
+        <div class="post-office-head">
+          <div><p class="eyebrow">Separate Government small-savings category</p><h2 id="post-office-fixed-income-title">Post Office fixed-income options</h2><p>Compare Time Deposit and Monthly Income Account by how they pay interest. They can serve a similar planning need to an FD, but they are separate Government schemes—not bank FDs and not DICGC-insured deposits.</p></div>
+          <div class="post-office-rate"><span>Current range</span><strong>6.90%–7.40%</strong><small>per annum</small></div>
+        </div>
+        <div class="post-office-option-grid">
+          <article id="post-office-td">
+            <div class="post-office-option-head"><span>Annual payout</span><strong>6.90%–7.50%</strong></div>
+            <h3>Post Office Time Deposit</h3>
+            <p>Choose one, two, three or five years. Interest is calculated quarterly and paid annually; the original deposit is returned at maturity.</p>
+            <div class="scheme-rate-list"><span>1 year <b>6.90%</b></span><span>2 years <b>7.00%</b></span><span>3 years <b>7.10%</b></span><span>5 years <b>7.50%</b></span></div>
+            <small>The five-year account may qualify for Section 80C subject to current rules.</small>
+          </article>
+          <article id="post-office-mis">
+            <div class="post-office-option-head"><span>Monthly payout</span><strong>7.40%</strong></div>
+            <h3>Monthly Income Account</h3>
+            <p>Place one lump sum for five years and receive interest every month. The payouts do not compound inside the account, and principal is returned at maturity.</p>
+            <small>Use “Pay interest as monthly income” in the calculator above for an illustration. Account limits and premature-closure deductions apply.</small>
+          </article>
+        </div>
+        <div class="ippb-clarifier"><div><span>Use the calculator above</span><h3>Choose compounding or income payout</h3></div><p>For a growth estimate, select <strong>Add interest to principal</strong>. For MIS, select <strong>Pay interest as monthly income</strong>; official rounding and payment dates may differ.</p></div>
+        <div class="directory-actions"><a class="directory-primary" href="https://www.indiapost.gov.in/Financial/Pages/Content/Post-Office-Saving-Schemes.aspx" target="_blank" rel="noopener noreferrer">Official India Post details ↗</a></div>
+      </div>
+    </section>
+
     <section class="bank-rates shell fd-bank-rates" aria-labelledby="fd-bank-rates-title">
       <div class="bank-rates-head">
         <div>
-          <p class="eyebrow">Official bank rates</p>
-          <h2 id="fd-bank-rates-title">Compare bank and NBFC FD interest rates</h2>
-          <p>Resident retail deposit rates from official issuer pages. Compare DICGC-insured bank FDs with higher-risk NBFC public deposits.</p>
+          <p class="eyebrow">Official deposit rates</p>
+          <h2 id="fd-bank-rates-title">Compare bank and NBFC deposit rates</h2>
+          <p>Resident retail deposit rates from official issuer pages. Compare DICGC-insured bank FDs with higher-risk NBFC public deposits. Post Office products are shown separately above.</p>
         </div>
         <div class="bank-rate-filters">
           <label for="fd-bank-filter">Institution
@@ -156,7 +189,7 @@
           <tbody id="fd-bank-rate-body"></tbody>
         </table>
       </div>
-      <p class="bank-rate-note"><strong>Important:</strong> “DICGC-insured” applies only to eligible deposits at an insured bank, within the ₹5 lakh limit and applicable capacity rules. NBFC FDs have no DICGC insurance. IPPB appears for regulatory clarity: it is an RBI-licensed payments bank, but payments banks cannot accept recurring or fixed deposits, so every FD tenure is marked “Not offered.” Verify current terms before investing. Sources checked 30 September 2026.</p>
+      <p class="bank-rate-note"><strong>Important:</strong> “DICGC-insured” applies only to eligible deposits at an insured bank, within the ₹5 lakh limit and applicable capacity rules. NBFC FDs have no DICGC insurance. IPPB appears for regulatory clarity but, as a payments bank, cannot accept fixed deposits. Verify current terms before investing. Sources checked 30 September 2026.</p>
     </section>
     <section class="explain shell" aria-labelledby="fd-guide-title">
       <div class="explain-grid">

@@ -20,7 +20,7 @@
         <a href="index.html">Explore</a>
         <a class="active" href="rd.html">RD calculator</a>
         <a href="fd.html">FD calculator</a>
-        <a href="post-office.html">Post Office</a>
+        <a href="index.html#post-office-schemes">Post Office schemes</a>
       </div>
     </nav>
   </header>
@@ -130,20 +130,21 @@
       <p class="schedule-note" id="schedule-note">The monthly view shows each instalment added and the estimated running balance.</p>
     </section>
 
-    <section class="bank-rates shell" aria-labelledby="bank-rates-title">
+    <section class="bank-rates shell" id="post-office-rd" aria-labelledby="bank-rates-title">
       <div class="bank-rates-head">
         <div>
-          <p class="eyebrow">Official bank rates</p>
-          <h2 id="bank-rates-title">Compare RD interest rates from 6 months to 5 years</h2>
-          <p>Published annual rates fetched from the banks’ official websites. Filter a bank or switch customer type to compare the available range.</p>
+          <p class="eyebrow">Official RD rates</p>
+          <h2 id="bank-rates-title">Compare bank and Post Office RD interest rates</h2>
+          <p>Published annual rates from official institution websites. Filter a provider or switch customer type to compare terms from 6 months to 5 years.</p>
         </div>
         <div class="bank-rate-filters">
-          <label for="bank-filter">Bank
+          <label for="bank-filter">Provider
             <select id="bank-filter">
               <option value="all">All banks</option>
               <option value="sbi">State Bank of India</option>
               <option value="icici">ICICI Bank</option>
               <option value="kotak">Kotak Mahindra Bank</option>
+              <option value="postoffice">Post Office Recurring Deposit</option>
               <option value="ippb">India Post Payments Bank</option>
             </select>
           </label>
@@ -158,17 +159,17 @@
       <div class="rate-summary" aria-live="polite">
         <div><span>Minimum shown</span><strong id="bank-rate-min">—</strong></div>
         <div><span>Maximum shown</span><strong id="bank-rate-max">—</strong></div>
-        <div><span>Institutions listed</span><strong id="bank-count">4</strong></div>
+        <div><span>Providers listed</span><strong id="bank-count">5</strong></div>
       </div>
       <div class="bank-table-wrap">
         <table class="bank-rate-table">
           <thead>
-            <tr><th>Bank</th><th>6 months</th><th>1 year</th><th>2 years</th><th>3 years</th><th>4 years</th><th>5 years</th><th>Min–max</th><th>Source</th></tr>
+            <tr><th>Provider</th><th>6 months</th><th>1 year</th><th>2 years</th><th>3 years</th><th>4 years</th><th>5 years</th><th>Min–max</th><th>Source</th></tr>
           </thead>
           <tbody id="bank-rate-body"></tbody>
         </table>
       </div>
-      <p class="bank-rate-note"><strong>Important:</strong> Bank rates are percentages per annum for resident retail RDs and can change without notice. IPPB appears for regulatory clarity: it is an RBI-licensed payments bank, but payments banks cannot accept recurring or fixed deposits, so every RD tenure is marked “Not offered.” Confirm current terms on the linked official page. Sources checked 30 September 2026.</p>
+      <p class="bank-rate-note"><strong>Important:</strong> Rates are percentages per annum and can change. Post Office RD has a standard five-year term and compounds quarterly; it does not offer the shorter tenures shown for bank comparison. IPPB appears for regulatory clarity: it is an RBI-licensed payments bank, but payments banks cannot accept recurring or fixed deposits. Confirm current terms on the linked official page. Sources checked 30 September 2026.</p>
     </section>
     <section class="explain shell" aria-labelledby="guide-title">
       <div class="explain-grid">

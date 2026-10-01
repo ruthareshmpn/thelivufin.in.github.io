@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#071018">
+  <meta name="description" content="National Pension System guide with a retirement corpus, lump-sum and monthly pension estimator.">
+  <title>National Pension System Guide — finclarity.in</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="post-office-scheme.css">
+  <link rel="stylesheet" href="nps.css">
+</head>
+<body>
+  <header class="site-header"><nav class="nav shell" aria-label="Primary navigation"><a class="brand" href="index.html" aria-label="finclarity.in home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 16h3v3H5zm5-5h3v8h-3zm5-5h3v13h-3" fill="currentColor"/></svg></span>finclarity.in</a><div class="nav-links"><a href="index.html">Explore</a><a href="rd.html">RD calculator</a><a href="fd.html">FD calculator</a><a class="active" href="nps.html">NPS guide</a></div></nav></header>
+  <main>
+    <section class="page-intro shell scheme-page-intro">
+      <div class="breadcrumb"><a href="index.html">Investments and savings</a> &nbsp;/&nbsp; National Pension System</div>
+      <p class="eyebrow">Retirement investing</p>
+      <h1>National Pension System (NPS)</h1>
+      <p>Build a long-term retirement corpus through PFRDA-regulated pension funds. Returns depend on market performance, your contributions, asset mix, charges and time invested.</p>
+      <div class="nps-badges"><span>Govt backed framework</span><span>Market linked</span><span>Portable PRAN</span></div>
+    </section>
+
+    <section class="scheme-workspace shell" aria-label="NPS guide and calculator">
+      <div class="scheme-main">
+        <section class="nps-alert"><strong>Government-regulated does not mean guaranteed.</strong><p>NPS operates under the Government’s pension framework and is regulated by PFRDA, but PFRDA states that it provides no implicit or explicit assurance of benefits. Your corpus can rise or fall with the underlying investments.</p></section>
+
+        <section class="scheme-estimator-card" aria-labelledby="nps-calculator-title">
+          <div class="scheme-estimator-head"><div><p class="eyebrow">Illustrative calculator</p><h2 id="nps-calculator-title">Estimate your retirement corpus</h2></div><div class="current-rate"><span>Return assumption</span><strong id="nps-return-badge">10.00%</strong></div></div>
+          <form class="nps-form" id="nps-form">
+            <label><span>Monthly contribution</span><div class="money-input"><span>₹</span><input id="nps-monthly" type="number" min="500" max="1000000" step="500" value="5000"></div></label>
+            <label><span>Current age</span><div class="age-input"><input id="nps-current-age" type="number" min="18" max="84" step="1" value="30"><span>years</span></div></label>
+            <label><span>Planned exit age</span><div class="age-input"><input id="nps-exit-age" type="number" min="19" max="85" step="1" value="60"><span>years</span></div></label>
+            <label><span>Expected annual return</span><div class="age-input"><input id="nps-return" type="number" min="1" max="20" step="0.1" value="10"><span>%</span></div></label>
+            <label><span>Corpus used for annuity</span><div class="age-input"><input id="nps-annuity-share" type="number" min="20" max="100" step="5" value="40"><span>%</span></div></label>
+            <label><span>Illustrative annuity rate</span><div class="age-input"><input id="nps-annuity-rate" type="number" min="1" max="15" step="0.1" value="6"><span>%</span></div></label>
+            <button class="button" type="submit">Update estimate</button>
+          </form>
+          <p class="estimate-note" id="nps-estimate-note"></p>
+          <div class="scheme-results nps-results" aria-live="polite">
+            <article><span>Total contributed</span><strong id="nps-contributed">—</strong></article>
+            <article><span>Estimated corpus</span><strong id="nps-corpus">—</strong></article>
+            <article><span>Estimated growth</span><strong id="nps-growth">—</strong></article>
+            <article><span>Illustrative lump sum</span><strong id="nps-lump-sum">—</strong><small id="nps-lump-tax-note"></small></article>
+            <article><span>Corpus used for annuity</span><strong id="nps-annuity-corpus">—</strong></article>
+            <article><span>Illustrative monthly pension</span><strong id="nps-monthly-pension">—</strong><small>Actual annuity quotes depend on age, provider and option chosen.</small></article>
+          </div>
+        </section>
+
+        <section class="scheme-information" aria-labelledby="nps-details-title"><p class="eyebrow">How it works</p><h2 id="nps-details-title">NPS details</h2><div class="scheme-facts"><article><span>Who can join</span><p>The current PFRDA All Citizen page permits eligible Indian citizens, resident or non-resident, and OCIs aged 18–85, subject to KYC. HUFs and PIOs are not eligible.</p></article><article><span>Tier I</span><p>The primary retirement account. Withdrawals and exit are governed by NPS rules, and eligible tax benefits may apply.</p></article><article><span>Tier II</span><p>A voluntary investment account with easier access. It generally does not receive the same tax treatment as Tier I; limited exceptions may apply.</p></article><article><span>Investment choices</span><p>Choose active or lifecycle allocation across equity, corporate debt, Government securities and permitted alternatives. Returns and risk vary with the mix.</p></article><article><span>Portability</span><p>Your Permanent Retirement Account Number—PRAN—can continue across jobs and locations, subject to the applicable sector and account rules.</p></article><article><span>Costs and records</span><p>NPS has account, transaction, fund-management and annuity-related charges. Review the current PFRDA and CRA disclosures before enrolling.</p></article></div><div class="scheme-actions"><a class="button" href="https://www.pfrda.org.in/en/schemes/national-pension-system/nps-for-all-citizen-models" target="_blank" rel="noopener noreferrer">Official PFRDA NPS details ↗</a><a href="index.html#post-office-schemes">Compare investment options →</a></div></section>
+
+        <section class="scheme-information access-options" aria-labelledby="nps-exit-title"><p class="eyebrow">Access and retirement</p><h2 id="nps-exit-title">Withdrawals and exit choices</h2><div class="access-option-grid"><article><span>Normal exit</span><strong>Lump sum plus annuity</strong><p>Current PFRDA rules provide different choices by model, joining age and corpus. A commonly used tax-aligned illustration is up to 60% lump sum with at least 40% used for annuity; some current operational options permit up to 80% lump sum with at least 20% annuity.</p></article><article><span>Premature exit</span><strong>Normally 20% lump sum</strong><p>Before the applicable normal-exit point, the standard rule generally permits up to 20% as lump sum and requires at least 80% for annuity, subject to small-corpus and other current exceptions.</p></article><article><span>Partial withdrawal</span><strong>Up to 25% of own contributions</strong><p>Partial withdrawals may be available for specified purposes and subject to contribution-period, frequency, interval and documentation conditions. This is not 25% of the total market value.</p></article></div><div class="scheme-caution"><strong>Important:</strong> Exit regulations changed in 2026. Verify your sector, model, joining age, corpus threshold and latest PFRDA rules before acting.</div><nav class="ssa-tax-links" aria-label="Official NPS exit references"><a href="https://pfrda.org.in/documents/33652/676426/Exits%2Band%2BWithdrawals%2Bunder%2BNPS%2Bfor%2BAll%2BCitizen%2BModel.pdf" target="_blank" rel="noopener noreferrer">PFRDA · 2026 exit FAQs ↗</a></nav></section>
+
+        <section class="scheme-information ssa-tax-section" aria-labelledby="nps-tax-title"><p class="eyebrow">Income-tax treatment</p><h2 id="nps-tax-title">How NPS is taxed</h2><p class="ssa-tax-intro">Tax treatment depends on who contributes, the tax regime selected and how money is withdrawn. The calculator does not reduce returns for tax.</p><div class="ssa-tax-grid"><article><span>Your contribution</span><strong>Sections 80CCD(1) and 80CCD(1B)</strong><p>Under the eligible old-regime framework, your contribution can fall within the combined ₹1.5 lakh limit, with an additional deduction of up to ₹50,000 under Section 80CCD(1B). The same contribution cannot be claimed twice.</p></article><article><span>Employer contribution</span><strong>Section 80CCD(2)</strong><p>An eligible employer contribution may receive a separate deduction within salary-based limits. Current Income Tax guidance provides up to 14% for government employees and, under the new regime, up to 14% for other eligible employees.</p></article><article><span>Growth inside NPS</span><strong>No annual tax on fund growth</strong><p>Investment gains accumulating within the NPS account are not taxed each year in the subscriber’s hands.</p></article><article><span>Final lump sum</span><strong>Up to 60% of corpus is tax-exempt</strong><p>Tax law currently exempts final withdrawal up to 60% of the total corpus. If an operational exit option permits a larger lump sum, do not assume the amount above 60% receives the same exemption.</p></article><article><span>Annuity purchase and pension</span><strong>Purchase is exempt; pension is taxable</strong><p>The amount applied to buy the annuity is not taxed at purchase, but pension or annuity payments are taxable in the year received at the applicable rate.</p></article><article><span>Partial withdrawal and death</span><strong>Specific exemptions apply</strong><p>Qualifying partial withdrawals are exempt up to the statutory limit, and the amount received by a nominee on the subscriber’s death is fully exempt under current guidance.</p></article></div><div class="scheme-caution"><strong>Tax note:</strong> The old and new tax regimes treat contribution deductions differently. Verify the law for the relevant financial year and keep PRAN contribution and exit records.</div><nav class="ssa-tax-links" aria-label="Official NPS tax references"><a href="https://www.incometaxindia.gov.in/en/income-from-salary" target="_blank" rel="noopener noreferrer">Income Tax Department · NPS tax treatment ↗</a><a href="https://www.incometax.gov.in/iec/foportal/help/individual/return-applicable-2" target="_blank" rel="noopener noreferrer">Income Tax Department · deductions ↗</a><a href="https://www.pfrda.org.in/en/schemes/national-pension-system/nps-for-all-citizen-models" target="_blank" rel="noopener noreferrer">PFRDA · All Citizen Model ↗</a></nav></section>
+      </div>
+    </section>
+  </main>
+  <footer><div class="footer-row shell"><span>© 2026 finclarity.in</span><span>Educational information only — not financial advice.</span></div></footer>
+  <script src="nps.js"></script>
+</body>
+</html>

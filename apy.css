@@ -1,0 +1,9 @@
+.apy-eligibility { padding:18px 20px; border:1px solid rgba(244,196,107,.28); border-radius:18px; background:rgba(244,196,107,.06); }
+.apy-eligibility strong { color:var(--amber); }
+.apy-eligibility p { margin:5px 0 0; color:var(--muted); font-size:.84rem; line-height:1.6; }
+.apy-form { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)) auto; align-items:end; gap:12px; margin-top:22px; }
+.apy-form label { display:grid; gap:7px; color:var(--muted); font-size:.72rem; font-weight:720; }
+.apy-form select { width:100%; padding:12px; color:var(--ink); border:1px solid var(--line); border-radius:11px; background:#0d1b26; font:inherit; }
+.apy-form .button { min-height:46px; border:0; cursor:pointer; }
+.apy-results { grid-template-columns:repeat(3,minmax(0,1fr)); }
+@media (max-width:820px) { .apy-form,.apy-results { grid-template-columns:1fr; } }

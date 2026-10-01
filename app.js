@@ -122,6 +122,14 @@ const bankRateData = [
     source: 'https://m.kotak.com/td-rates/'
   },
   {
+    id: 'postoffice',
+    name: 'Post Office Recurring Deposit',
+    effective: 'Government small-savings RD · 5-year term',
+    regular: [null, null, null, null, null, 6.70],
+    senior: [null, null, null, null, null, 6.70],
+    source: 'https://www.indiapost.gov.in/Financial/Pages/Content/Post-Office-Saving-Schemes.aspx'
+  },
+  {
     id: 'ippb',
     name: 'India Post Payments Bank',
     effective: 'RBI-licensed payments bank · no RD',
@@ -243,7 +251,6 @@ if (context?.registerTool) {
   }, { signal: lifecycle.signal });
   Promise.resolve(registration).catch(() => {});
 }
-
 
 
 

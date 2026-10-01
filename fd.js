@@ -8,6 +8,7 @@ const fdControls = [
   { input: document.querySelector('#fd-tenure'), range: document.querySelector('#fd-tenure-range') }
 ];
 const fdFrequency = document.querySelector('#fd-frequency');
+const fdInterestMode = document.querySelector('#fd-interest-mode');
 const fdClamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
 const fdFrequencyDetails = {
@@ -26,7 +27,31 @@ function fdTenureLabel(months) {
   return Math.floor(months / 12) + ' yr ' + (months % 12) + ' mo';
 }
 
-function renderFdSchedule(principal, annualRate, months, frequency) {
+function renderFdSchedule(principal, annualRate, months, frequency, mode) {
+  if (mode === 'monthly-payout') {
+    const monthlyIncome = principal * (annualRate / 100) / 12;
+    const rows = Array.from({ length: months }, (_, index) => ({
+      month: index + 1,
+      income: monthlyIncome,
+      totalIncome: monthlyIncome * (index + 1)
+    }));
+    document.querySelector('#fd-schedule-label').textContent = 'Monthly income schedule';
+    document.querySelector('#fd-schedule-title').textContent = 'Interest paid every month';
+    document.querySelector('#fd-schedule-count').textContent = months + (months === 1 ? ' payment' : ' payments');
+    document.querySelector('#fd-schedule-period-heading').textContent = 'Month';
+    document.querySelector('#fd-schedule-interest-heading').textContent = 'Income paid';
+    document.querySelector('#fd-schedule-total-heading').textContent = 'Total income received';
+    document.querySelector('#fd-schedule-body').innerHTML = rows.map((row) => (
+      '<tr' + (row.month === months ? ' class="is-maturity"' : '') + '>' +
+        '<td>Month ' + row.month + '</td>' +
+        '<td>+' + fdMoney.format(row.income) + '</td>' +
+        '<td>' + fdMoney.format(row.totalIncome) + '</td>' +
+      '</tr>'
+    )).join('');
+    document.querySelector('#fd-schedule-note').textContent = 'The principal is not increased by these payouts. It remains invested and is returned at maturity, subject to the deposit terms.';
+    return;
+  }
+
   const detail = fdFrequencyDetails[frequency] || fdFrequencyDetails[4];
   const periodRate = (annualRate / 100) / frequency;
   const completePeriods = Math.floor(months / detail.months);
@@ -57,8 +82,12 @@ function renderFdSchedule(principal, annualRate, months, frequency) {
     });
   }
 
+  document.querySelector('#fd-schedule-label').textContent = 'Compounding schedule';
   document.querySelector('#fd-schedule-title').textContent = detail.adjective + ' interest credits';
   document.querySelector('#fd-schedule-count').textContent = rows.length + (rows.length === 1 ? ' period' : ' periods');
+  document.querySelector('#fd-schedule-period-heading').textContent = 'Frequency period';
+  document.querySelector('#fd-schedule-interest-heading').textContent = 'Interest added';
+  document.querySelector('#fd-schedule-total-heading').textContent = 'Total amount';
   document.querySelector('#fd-schedule-body').innerHTML = rows.map((row) => (
     '<tr' + (row.isFinal ? ' class="is-maturity"' : '') + '>' +
       '<td>' + row.label + '</td>' +
@@ -180,21 +209,34 @@ function calculateFd() {
   const annualRate = fdClamp(Number(fdControls[1].input.value) || 1, 1, 12);
   const months = fdClamp(Number(fdControls[2].input.value) || 1, 1, 120);
   const frequency = Number(fdFrequency.value) || 4;
+  const mode = fdInterestMode.value;
   const years = months / 12;
-  const maturity = principal * Math.pow(1 + (annualRate / 100) / frequency, frequency * years);
-  const interest = Math.max(0, maturity - principal);
+  const isMonthlyPayout = mode === 'monthly-payout';
+  const cumulativeMaturity = principal * Math.pow(1 + (annualRate / 100) / frequency, frequency * years);
+  const monthlyIncome = principal * (annualRate / 100) / 12;
+  const maturity = isMonthlyPayout ? principal : cumulativeMaturity;
+  const interest = isMonthlyPayout ? monthlyIncome * months : Math.max(0, cumulativeMaturity - principal);
   const effectiveYield = (Math.pow(1 + (annualRate / 100) / frequency, frequency) - 1) * 100;
-  const principalShare = principal / maturity * 100;
+  const combinedValue = principal + interest;
+  const principalShare = principal / combinedValue * 100;
 
+  document.querySelector('#fd-primary-label').textContent = isMonthlyPayout ? 'Principal returned at maturity' : 'Maturity amount';
   document.querySelector('#fd-maturity').textContent = fdMoney.format(maturity);
   document.querySelector('#fd-invested').textContent = fdMoney.format(principal);
+  document.querySelector('#fd-interest-label').textContent = isMonthlyPayout ? 'Total income received' : 'Interest earned';
   document.querySelector('#fd-interest').textContent = fdMoney.format(interest);
   document.querySelector('#fd-taxable').textContent = fdMoney.format(interest);
   document.querySelector('#fd-tenure-label').textContent = fdTenureLabel(months);
-  document.querySelector('#fd-yield').textContent = effectiveYield.toFixed(2) + '%';
+  document.querySelector('#fd-yield-label').textContent = isMonthlyPayout ? 'Estimated monthly income' : 'Effective annual yield';
+  document.querySelector('#fd-yield').textContent = isMonthlyPayout ? fdMoney.format(monthlyIncome) : effectiveYield.toFixed(2) + '%';
   document.querySelector('#fd-principal-bar').style.width = principalShare + '%';
   document.querySelector('#fd-interest-bar').style.width = (100 - principalShare) + '%';
-  renderFdSchedule(principal, annualRate, months, frequency);
+  fdFrequency.disabled = isMonthlyPayout;
+  document.querySelector('#fd-frequency-field').classList.toggle('is-disabled', isMonthlyPayout);
+  document.querySelector('#fd-calculator-note').textContent = isMonthlyPayout
+    ? 'Monthly income is estimated as principal × annual rate ÷ 12. Actual payout FDs may use a discounted rate, day-count rules, rounding, tax and TDS.'
+    : 'This is a cumulative-FD estimate. Actual bank calculations can differ because of day-count rules, special-tenure rates, rounding, tax and premature closure.';
+  renderFdSchedule(principal, annualRate, months, frequency, mode);
 }
 
 fdControls.forEach(({ input, range }) => {
@@ -212,6 +254,7 @@ fdControls.forEach(({ input, range }) => {
   });
 });
 fdFrequency.addEventListener('change', calculateFd);
+fdInterestMode.addEventListener('change', calculateFd);
 const fdBankFilter = document.querySelector('#fd-bank-filter');
 const fdCustomerType = document.querySelector('#fd-customer-type');
 if (fdBankFilter && fdCustomerType) {
@@ -220,7 +263,6 @@ if (fdBankFilter && fdCustomerType) {
   renderFdBankRates();
 }
 calculateFd();
-
 
 
 
