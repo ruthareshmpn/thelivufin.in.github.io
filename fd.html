@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071018">
+  <meta name="description" content="Understand fixed deposits, estimate maturity value and interest, and review tax, liquidity and deposit-insurance considerations.">
+  <title>FD Calculator & Guide — finclarity.in</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2347e3b1'/%3E%3Cpath d='M8 21h4v4H8zm6-6h4v10h-4zm6-7h4v17h-4z' fill='%23041511'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary navigation">
+      <a class="brand" href="index.html" aria-label="finclarity.in home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 16h3v3H5zm5-5h3v8h-3zm5-5h3v13h-3" fill="currentColor"/></svg></span>
+        finclarity.in
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Explore</a>
+        <a href="rd.html">RD calculator</a>
+        <a class="active" href="fd.html">FD calculator</a>
+        <a href="post-office.html">Post Office</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-intro shell">
+      <div class="breadcrumb"><a href="index.html">Passive income</a> &nbsp;/&nbsp; Fixed Deposit</div>
+      <p class="eyebrow">Fixed deposit</p>
+      <h1>Lock in a lump sum. Know what it can become.</h1>
+      <p>Estimate an FD’s maturity value, understand compounding, and review access, tax and safety before choosing a deposit.</p>
+    </section>
+
+    <section class="calculator-layout shell" aria-label="Fixed deposit calculator">
+      <form class="calc-panel" id="fd-form">
+        <h2>Your fixed deposit</h2>
+        <div class="field">
+          <div class="field-top">
+            <label for="fd-principal">Deposit amount</label>
+            <div class="value-wrap"><span>₹</span><input id="fd-principal" type="number" min="1000" max="10000000" step="1000" value="100000" inputmode="numeric"></div>
+          </div>
+          <input id="fd-principal-range" type="range" min="1000" max="10000000" step="1000" value="100000" aria-label="Fixed deposit amount slider">
+          <div class="range-scale"><span>₹1,000</span><span>₹1 crore</span></div>
+        </div>
+        <div class="field">
+          <div class="field-top">
+            <label for="fd-rate">Annual interest rate</label>
+            <div class="value-wrap suffix"><input id="fd-rate" type="number" min="1" max="12" step="0.05" value="6.5" inputmode="decimal"><span>%</span></div>
+          </div>
+          <input id="fd-rate-range" type="range" min="1" max="12" step="0.05" value="6.5" aria-label="FD annual interest rate slider">
+          <div class="range-scale"><span>1%</span><span>12%</span></div>
+        </div>
+        <div class="field">
+          <div class="field-top">
+            <label for="fd-tenure">Tenure</label>
+            <div class="value-wrap suffix"><input id="fd-tenure" type="number" min="1" max="120" step="1" value="36" inputmode="numeric"><span>mo</span></div>
+          </div>
+          <input id="fd-tenure-range" type="range" min="1" max="120" step="1" value="36" aria-label="FD tenure in months slider">
+          <div class="range-scale"><span>1 month</span><span>10 years</span></div>
+        </div>
+        <div class="field compact-field">
+          <label for="fd-frequency">Compounding frequency</label>
+          <select id="fd-frequency">
+            <option value="4" selected>Quarterly</option>
+            <option value="12">Monthly</option>
+            <option value="2">Half-yearly</option>
+            <option value="1">Yearly</option>
+          </select>
+        </div>
+        <p class="calc-note">This is a cumulative-FD estimate. Actual bank calculations can differ because of day-count rules, special-tenure rates, rounding, tax and premature closure.</p>
+      </form>
+
+      <section class="result-panel fd-result-panel" aria-live="polite" aria-atomic="true">
+        <h2>Estimated outcome</h2>
+        <span class="result-label">Maturity amount</span>
+        <strong class="maturity" id="fd-maturity">₹1,20,890</strong>
+        <div class="result-grid">
+          <div class="result-stat"><span>Amount invested</span><strong id="fd-invested">₹1,00,000</strong></div>
+          <div class="result-stat"><span>Interest earned</span><strong id="fd-interest">₹20,890</strong></div>
+          <div class="result-stat"><span>Tenure</span><strong id="fd-tenure-label">3 years</strong></div>
+          <div class="result-stat"><span>Effective annual yield</span><strong id="fd-yield">6.66%</strong></div>
+          <div class="result-stat fd-tax-stat"><span>Estimated taxable interest</span><strong id="fd-taxable">₹20,890</strong><small>FD interest is generally taxable at your applicable slab rate. This estimate does not deduct tax or TDS.</small></div>
+        </div>
+        <div class="growth-visual" aria-label="Deposit and interest proportion">
+          <div class="bar"><span class="bar-principal" id="fd-principal-bar"></span><span class="bar-interest" id="fd-interest-bar"></span></div>
+          <div class="bar-key"><span>Deposit</span><span>Interest</span></div>
+        </div>
+        <div class="fd-compound-schedule">
+          <div class="fd-compound-head">
+            <div>
+              <span class="result-label">Compounding schedule</span>
+              <strong id="fd-schedule-title">Quarterly interest credits</strong>
+            </div>
+            <small id="fd-schedule-count">12 periods</small>
+          </div>
+          <div class="fd-schedule-table-wrap">
+            <table class="fd-schedule-table">
+              <thead><tr><th>Frequency period</th><th>Interest added</th><th>Total amount</th></tr></thead>
+              <tbody id="fd-schedule-body"></tbody>
+            </table>
+          </div>
+          <p class="fd-schedule-note" id="fd-schedule-note">Each row shows when interest is added to the deposit and begins earning interest in later periods.</p>
+        </div>
+      </section>
+    </section>
+
+    <section class="fd-snapshot shell" aria-labelledby="fd-snapshot-title">
+      <p class="eyebrow">Quick decision view</p>
+      <h2 id="fd-snapshot-title">What an FD gives you—and what it asks in return</h2>
+      <div class="fd-snapshot-grid">
+        <article><span>Return</span><strong>Known upfront</strong><p>The contracted rate stays fixed for the chosen tenure, subject to the product’s terms.</p></article>
+        <article><span>Access</span><strong>Possible, with conditions</strong><p>Premature withdrawal may reduce the applicable interest and can attract a penalty.</p></article>
+        <article><span>Risk</span><strong>Issuer matters</strong><p>Bank deposits and company deposits do not have the same protection or credit risk.</p></article>
+      </div>
+    </section>
+
+    <section class="bank-rates shell fd-bank-rates" aria-labelledby="fd-bank-rates-title">
+      <div class="bank-rates-head">
+        <div>
+          <p class="eyebrow">Official bank rates</p>
+          <h2 id="fd-bank-rates-title">Compare bank and NBFC FD interest rates</h2>
+          <p>Resident retail deposit rates from official issuer pages. Compare DICGC-insured bank FDs with higher-risk NBFC public deposits.</p>
+        </div>
+        <div class="bank-rate-filters">
+          <label for="fd-bank-filter">Institution
+            <select id="fd-bank-filter">
+              <option value="all">All institutions</option>
+              <option value="sbi">State Bank of India</option>
+              <option value="hdfc">HDFC Bank</option>
+              <option value="icici">ICICI Bank</option>
+              <option value="mahindra">Mahindra Finance</option>
+              <option value="shriram">Shriram Finance</option>
+              <option value="ippb">India Post Payments Bank</option>
+            </select>
+          </label>
+          <label for="fd-customer-type">Customer
+            <select id="fd-customer-type">
+              <option value="regular">Regular citizen</option>
+              <option value="senior">Senior citizen</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="rate-summary" aria-live="polite">
+        <div><span>Minimum shown</span><strong id="fd-bank-rate-min">—</strong></div>
+        <div><span>Maximum shown</span><strong id="fd-bank-rate-max">—</strong></div>
+        <div><span>Institutions listed</span><strong id="fd-bank-count">6</strong></div>
+      </div>
+      <div class="bank-table-wrap">
+        <table class="bank-rate-table">
+          <thead>
+            <tr><th>Institution</th><th>FD type</th><th>6 months</th><th>1 year</th><th>2 years</th><th>3 years</th><th>4 years</th><th>5 years</th><th>Min–max</th><th>Source</th></tr>
+          </thead>
+          <tbody id="fd-bank-rate-body"></tbody>
+        </table>
+      </div>
+      <p class="bank-rate-note"><strong>Important:</strong> “DICGC-insured” applies only to eligible deposits at an insured bank, within the ₹5 lakh limit and applicable capacity rules. NBFC FDs have no DICGC insurance. IPPB appears for regulatory clarity: it is an RBI-licensed payments bank, but payments banks cannot accept recurring or fixed deposits, so every FD tenure is marked “Not offered.” Verify current terms before investing. Sources checked 30 September 2026.</p>
+    </section>
+    <section class="explain shell" aria-labelledby="fd-guide-title">
+      <div class="explain-grid">
+        <aside class="explain-nav" aria-label="On this page">
+          <span>On this page</span>
+          <a href="#what-is-fd">What is an FD?</a>
+          <a href="#fd-options">Cumulative vs payout</a>
+          <a href="#fd-safety">Understanding DICGC</a>
+          <a href="#nbfc-deposits">Understanding NBFCs</a>
+          <a href="#institution-directory">Institution directories</a>
+          <a href="#fd-tax">Tax treatment</a>
+        </aside>
+        <article>
+          <section class="article-section" id="what-is-fd">
+            <p class="eyebrow">The basics</p>
+            <h2 id="fd-guide-title">What is a Fixed Deposit?</h2>
+            <p>A Fixed Deposit is a lump-sum deposit placed with a bank or other eligible issuer for a chosen period at an agreed interest rate. At maturity, a cumulative FD returns the original deposit plus accumulated interest. A payout FD distributes interest periodically instead.</p>
+            <p>Unlike an RD, which builds savings through monthly instalments, an FD starts with the full amount on day one. That makes it useful for money you already have and do not need immediately.</p>
+          </section>
+
+
+          <section class="article-section" id="fd-options">
+            <p class="eyebrow">Choose the cash flow</p>
+            <h2>Cumulative FD or interest payout?</h2>
+            <div class="pros-cons">
+              <div class="mini-card"><h3>Cumulative FD</h3><ul><li>Interest is reinvested until maturity</li><li>Benefits fully from compounding</li><li>Useful for a future lump-sum goal</li></ul></div>
+              <div class="mini-card"><h3>Payout FD</h3><ul><li>Interest is paid monthly, quarterly or periodically</li><li>Can support regular income needs</li><li>Payouts may be discounted and do not compound in the deposit</li></ul></div>
+            </div>
+          </section>
+
+          <section class="article-section" id="fd-safety">
+            <p class="eyebrow">Deposit protection</p>
+            <h2>What DICGC covers—and what the ₹5 lakh limit means</h2>
+            <p><strong>DICGC</strong> stands for the Deposit Insurance and Credit Guarantee Corporation, a wholly owned subsidiary of the Reserve Bank of India. It provides deposit insurance when an insured bank is liquidated, loses its banking licence, is reconstructed or amalgamated under an applicable scheme, or comes under qualifying withdrawal restrictions.</p>
+            <div class="definition-strip"><span>DICGC in one line</span><strong>Insurance for eligible bank deposits—not a guarantee of every investment product.</strong></div>
+            <div class="fd-detail-grid">
+              <article>
+                <span class="detail-number">01</span>
+                <h3>₹5 lakh is the total ceiling</h3>
+                <p>Cover includes principal plus accrued interest, up to ₹5,00,000 for each depositor at each insured bank. If principal already equals ₹5 lakh, interest above that amount is outside the limit.</p>
+              </article>
+              <article>
+                <span class="detail-number">02</span>
+                <h3>Accounts at one bank are combined</h3>
+                <p>Savings, current, FD and RD balances across every branch of the same bank are aggregated when they are held in the same right and the same capacity.</p>
+              </article>
+              <article>
+                <span class="detail-number">03</span>
+                <h3>Different banks are separate</h3>
+                <p>The ₹5 lakh ceiling applies separately at each insured bank. Moving money between branches of the same bank does not create another insurance limit.</p>
+              </article>
+              <article>
+                <span class="detail-number">04</span>
+                <h3>Capacity can change treatment</h3>
+                <p>An individual account, a qualifying joint account, or an account held as guardian, partner or trustee can be treated separately when the legal right and capacity are genuinely different under DICGC rules.</p>
+              </article>
+            </div>
+            <div class="example-card">
+              <span>Simple example</span>
+              <p>If you hold ₹3.5 lakh in FDs, ₹1 lakh in savings and ₹75,000 of accrued interest at the same insured bank in the same capacity, the combined balance is ₹5.25 lakh. The maximum DICGC cover is ₹5 lakh—not ₹5 lakh for each account.</p>
+            </div>
+            <div class="coverage-list">
+              <div><strong>Generally covered</strong><span>Eligible savings, current, fixed and recurring deposits maintained with an insured bank.</span></div>
+              <div><strong>Not covered by DICGC</strong><span>NBFC or company deposits, mutual funds, shares, bonds, insurance products, crypto assets and deposits held outside India.</span></div>
+            </div>
+            <p class="source-note">Always confirm that the institution appears on DICGC’s list of insured banks and read the official “same right and same capacity” rules for joint or representative accounts.</p>
+            <nav class="inline-official-links" aria-label="Official DICGC references">
+              <span>Official DICGC references</span>
+              <a href="https://www.dicgc.org.in/guide-to-deposit-insurance" target="_blank" rel="noopener noreferrer">Deposit-insurance guide ↗</a>
+              <a href="https://www.dicgc.org.in/FAQs" target="_blank" rel="noopener noreferrer">DICGC FAQs ↗</a>
+            </nav>
+
+            <div class="nbfc-guide" id="nbfc-deposits">
+              <p class="eyebrow">Non-banking finance companies</p>
+              <h2>What an NBFC is—and why its FD carries different risk</h2>
+              <p>An <strong>NBFC</strong> is a company that provides financial services such as lending, asset finance or housing finance without being a bank. Some NBFCs are permitted to accept public deposits, but RBI registration alone does not mean an NBFC may take deposits.</p>
+              <div class="nbfc-alert"><strong>Important:</strong> An NBFC deposit is unsecured. It is not insured by DICGC, and RBI does not guarantee repayment. A higher offered rate is compensation for taking more issuer credit risk.</div>
+              <div class="fd-comparison-table-wrap">
+                <table class="fd-comparison-table">
+                  <thead><tr><th>Question</th><th>Bank FD</th><th>NBFC public deposit</th></tr></thead>
+                  <tbody>
+                    <tr><td>Who accepts it?</td><td>A bank licensed to accept deposits</td><td>Only an NBFC specifically authorised to accept public deposits</td></tr>
+                    <tr><td>DICGC insurance</td><td>Eligible deposits at an insured bank are covered within the ₹5 lakh ceiling</td><td>No DICGC insurance</td></tr>
+                    <tr><td>RBI guarantee</td><td>RBI supervision is not a guarantee beyond applicable DICGC cover</td><td>RBI registration or regulation is not a repayment guarantee</td></tr>
+                    <tr><td>Credit rating</td><td>Not normally presented as an FD-scheme rating</td><td>A current minimum investment-grade deposit rating is required for deposit-taking NBFCs; RBI currently specifies BBB− from a SEBI-registered rating agency</td></tr>
+                    <tr><td>Typical permitted tenure</td><td>Varies by bank and product</td><td>Public deposits are generally accepted for 12 to 60 months under RBI rules</td></tr>
+                    <tr><td>Main risk</td><td>Bank failure exposure above the insured amount</td><td>The NBFC may delay or fail to repay principal or interest</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <h3 class="checklist-title">Before placing money with an NBFC</h3>
+              <ul class="due-diligence-list">
+                <li><strong>Verify permission:</strong> confirm it is a deposit-taking NBFC or HFC authorised to accept public deposits—not merely an RBI-registered NBFC.</li>
+                <li><strong>Check the current rating:</strong> note the rating agency, rating level, outlook and date. Ratings can be downgraded and are opinions, not guarantees.</li>
+                <li><strong>Read the application form:</strong> it should disclose the deposit terms, maturity, interest, premature-withdrawal rules and required regulatory declarations.</li>
+                <li><strong>Review financial strength:</strong> look at profitability, capital, asset quality, liquidity, repayment history and whether deposits are overdue.</li>
+                <li><strong>Keep evidence:</strong> pay through traceable banking channels and insist on an official receipt showing depositor name, amount, rate and maturity date.</li>
+                <li><strong>Diversify:</strong> do not choose an issuer only because its rate is higher, and avoid concentrating emergency money in an uninsured deposit.</li>
+              </ul>
+              <nav class="inline-official-links" aria-label="Official NBFC references">
+                <span>Official RBI references</span>
+                <a href="https://www.rbi.org.in/scripts/FAQView.aspx?Id=3" target="_blank" rel="noopener noreferrer">NBFC depositor FAQ ↗</a>
+                <a href="https://www.rbi.org.in/Scripts/BS_CircularIndexDisplay.aspx?Id=12304" target="_blank" rel="noopener noreferrer">Minimum deposit rating ↗</a>
+              </nav>
+            </div>
+          </section>
+
+          <section class="article-section institution-directory" id="institution-directory">
+            <p class="eyebrow">Verify before depositing</p>
+            <h2>Official bank and NBFC directories</h2>
+            <p>These official directories contain thousands of institutions and are updated by the regulators. Search the institution's full legal name on the official list immediately before investing.</p>
+            <div class="directory-alert"><strong>Do not mix up the two lists:</strong> a bank appearing on DICGC's insured-bank list has eligible deposits covered within the applicable limit. An NBFC appearing on RBI's registered list is <em>not</em> DICGC-insured, and registration alone does not permit it to accept public deposits.</div>
+
+            <div class="directory-grid">
+              <article class="directory-card insured-directory">
+                <div class="directory-card-head"><span>01</span><small>DICGC · Deposit protection</small></div>
+                <h3>List of insured banks</h3>
+                <p>The official searchable list covers insured commercial banks, small finance banks, payments banks, regional rural banks, local area banks and eligible co-operative banks.</p>
+                <ul>
+                  <li>Search using the bank's complete legal name.</li>
+                  <li>Also check whether it has been de-registered or placed under All-Inclusive Directions.</li>
+                  <li>Insurance is up to ₹5 lakh per depositor, per bank, in the same right and capacity, including principal and interest.</li>
+                </ul>
+                <div class="directory-actions">
+                  <a class="directory-primary" href="https://www.dicgc.org.in/insured-banks" target="_blank" rel="noopener noreferrer">Open insured-bank list ↗</a>
+                  <a href="https://www.dicgc.org.in/de-registered-banks" target="_blank" rel="noopener noreferrer">De-registered banks ↗</a>
+                  <a href="https://www.dicgc.org.in/banks-under-aid" target="_blank" rel="noopener noreferrer">Banks under AID ↗</a>
+                </div>
+              </article>
+
+              <article class="directory-card nbfc-directory">
+                <div class="directory-card-head"><span>02</span><small>RBI · Registration status</small></div>
+                <h3>List of registered NBFCs and ARCs</h3>
+                <p>RBI's master directory identifies registered NBFCs and Asset Reconstruction Companies. In the downloadable list, check the field showing whether the company has a Certificate of Registration for holding or accepting public deposits.</p>
+                <ul>
+                  <li><strong>“Yes”</strong> in the public-deposit field is essential before considering an NBFC fixed deposit.</li>
+                  <li><strong>“No”</strong> means the institution is registered but cannot accept public deposits.</li>
+                  <li>Even an authorised deposit-taking NBFC is not covered by DICGC and repayment is not guaranteed by RBI.</li>
+                </ul>
+                <div class="directory-actions">
+                  <a class="directory-primary" href="https://www.rbi.org.in/scripts/BS_NBFCList.aspx" target="_blank" rel="noopener noreferrer">Open RBI NBFC master list ↗</a>
+                  <a href="https://www.rbi.org.in/scripts/nbfcpublication_new.aspx" target="_blank" rel="noopener noreferrer">NBFC deposit-status lists ↗</a>
+                  <a href="https://sachet.rbi.org.in" target="_blank" rel="noopener noreferrer">RBI Sachet portal ↗</a>
+                </div>
+              </article>
+            </div>
+            <p class="directory-footnote">List status can change after cancellation, merger, surrender or regulatory action. The linked regulator page—not a copied list—is the final reference.</p>
+          </section>
+
+          <section class="article-section" id="fd-tax">
+            <p class="eyebrow">Tax treatment</p>
+            <h2>Interest is taxable even when it is reinvested</h2>
+            <p>FD interest is generally included in taxable income at the applicable slab rate. For bank interest, TDS thresholds and declarations such as Form 15G or 15H may apply depending on current law and eligibility. TDS is a tax credit—not necessarily your final tax liability.</p>
+            <div class="tax-rates fd-tax-rates" aria-label="Current bank-interest TDS overview">
+              <div><span>Regular citizens</span><strong>₹50,000</strong><small>annual TDS threshold</small></div>
+              <div><span>Senior citizens</span><strong>₹1,00,000</strong><small>annual TDS threshold</small></div>
+              <div><span>Valid PAN</span><strong>10%</strong><small>standard TDS rate</small></div>
+              <div><span>PAN not provided</span><strong>20%</strong><small>higher TDS rate</small></div>
+            </div>
+          </section>
+
+          <section class="article-section">
+            <p class="eyebrow">Before you invest</p>
+            <h2>A practical FD checklist</h2>
+            <div class="pros-cons">
+              <div class="mini-card"><h3>Confirm the product</h3><ul><li>Issuer and deposit-insurance status</li><li>Exact tenure and applicable rate bucket</li><li>Cumulative or payout option</li><li>Nomination and maturity instructions</li></ul></div>
+              <div class="mini-card"><h3>Understand the exit</h3><ul><li>Premature-withdrawal penalty</li><li>Rate used after early closure</li><li>Loan or overdraft availability</li><li>Auto-renewal settings</li></ul></div>
+            </div>
+            <nav class="fd-sources" aria-label="Official fixed deposit references">
+              <span>Official references</span>
+              <a href="https://www.dicgc.org.in/guide-to-deposit-insurance" target="_blank" rel="noopener noreferrer">DICGC deposit insurance</a>
+              <a href="https://www.rbi.org.in/scripts/FAQView.aspx?Id=18" target="_blank" rel="noopener noreferrer">RBI term-deposit FAQ</a>
+              <a href="https://www.rbi.org.in/scripts/FAQView.aspx?Id=3" target="_blank" rel="noopener noreferrer">RBI NBFC depositor FAQ</a>
+              <a href="https://wmstatic-prd.incometaxindia.gov.in/web/guest/w/threshold-limits-under-income-tax-act" target="_blank" rel="noopener noreferrer">Income Tax thresholds</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="footer-row shell"><span>© 2026 finclarity.in</span><span>Educational information only — not financial advice.</span></div></footer>
+  <script src="fd.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

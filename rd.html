@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071018">
+  <meta name="description" content="Estimate recurring deposit maturity and learn how RD interest works.">
+  <title>RD Interest Calculator — finclarity.in</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2347e3b1'/%3E%3Cpath d='M8 21h4v4H8zm6-6h4v10h-4zm6-7h4v17h-4z' fill='%23041511'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary navigation">
+      <a class="brand" href="index.html" aria-label="finclarity.in home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 16h3v3H5zm5-5h3v8h-3zm5-5h3v13h-3" fill="currentColor"/></svg></span>
+        finclarity.in
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Explore</a>
+        <a class="active" href="rd.html">RD calculator</a>
+        <a href="fd.html">FD calculator</a>
+        <a href="post-office.html">Post Office</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-intro shell">
+      <div class="breadcrumb"><a href="index.html">Passive income</a> &nbsp;/&nbsp; Recurring Deposit</div>
+      <p class="eyebrow">Recurring Deposit</p>
+      <h1>Turn a monthly habit into a clear goal.</h1>
+      <p>Adjust the amount, interest rate and tenure to estimate how much your RD could be worth at maturity.</p>
+    </section>
+
+    <section class="calculator-layout shell" aria-label="Recurring deposit calculator">
+      <form class="calc-panel" id="rd-form" onsubmit="return false">
+        <h2>Your deposit plan</h2>
+        <div class="field">
+          <div class="field-top">
+            <label for="monthly">Monthly deposit</label>
+            <div class="value-wrap"><span>₹</span><input id="monthly" type="number" min="500" max="100000" step="500" value="5000" inputmode="numeric" aria-describedby="monthly-scale"></div>
+          </div>
+          <input id="monthly-range" type="range" min="500" max="100000" step="500" value="5000" aria-label="Monthly deposit slider">
+          <div class="range-scale" id="monthly-scale"><span>₹500</span><span>₹1 lakh</span></div>
+        </div>
+        <div class="field">
+          <div class="field-top">
+            <label for="rate">Annual interest rate</label>
+            <div class="value-wrap suffix"><input id="rate" type="number" min="1" max="12" step="0.1" value="7.1" inputmode="decimal"><span>%</span></div>
+          </div>
+          <input id="rate-range" type="range" min="1" max="12" step="0.1" value="7.1" aria-label="Annual interest rate slider">
+          <div class="range-scale"><span>1%</span><span>12%</span></div>
+        </div>
+        <div class="field">
+          <div class="field-top">
+            <label for="tenure">Tenure</label>
+            <div class="value-wrap suffix"><input id="tenure" type="number" min="6" max="120" step="1" value="36" inputmode="numeric"><span>mo</span></div>
+          </div>
+          <input id="tenure-range" type="range" min="6" max="120" step="1" value="36" aria-label="Tenure in months slider">
+          <div class="range-scale"><span>6 months</span><span>10 years</span></div>
+        </div>
+        <p class="calc-note">Estimate uses monthly instalments with quarterly compounding. Actual bank results can differ based on deposit dates, rounding, penalties and tax treatment.</p>
+      </form>
+
+      <section class="result-panel" aria-live="polite" aria-atomic="true">
+        <h2>Estimated outcome</h2>
+        <span class="result-label">Maturity amount</span>
+        <strong class="maturity" id="maturity">₹1,99,311</strong>
+        <div class="result-grid">
+          <div class="result-stat"><span>Total deposited</span><strong id="principal">₹1,80,000</strong></div>
+          <div class="result-stat"><span>Interest earned</span><strong id="interest">₹19,311</strong></div>
+          <article class="tax-card" aria-labelledby="tax-card-title">
+            <div class="tax-card-head">
+              <div>
+                <span class="tax-kicker">Estimated taxable interest</span>
+                <strong id="taxable-interest">₹19,311</strong>
+              </div>
+              <span class="tax-badge">India · FY 2025–26 onward</span>
+            </div>
+            <p id="tax-card-title" class="tax-intro">RD interest is added to your taxable income and is generally taxed at your applicable income-tax slab rate. TDS may also apply when your total interest with a bank crosses the annual limit.</p>
+            <div class="tax-rates" aria-label="TDS thresholds and rates">
+              <div><span>Regular citizens</span><strong>₹50,000</strong><small>annual interest threshold</small></div>
+              <div><span>Senior citizens</span><strong>₹1,00,000</strong><small>annual interest threshold</small></div>
+              <div><span>Valid PAN</span><strong>10%</strong><small>standard TDS rate</small></div>
+              <div><span>PAN not provided</span><strong>20%</strong><small>higher TDS rate</small></div>
+            </div>
+            <ul class="tax-points">
+              <li>The threshold is based on cumulative interest across eligible deposits with the same bank in a financial year. Recurring deposits are included.</li>
+              <li>Tax and TDS apply only to interest earned—not to the principal you deposit each month. Crossing the threshold triggers TDS; it is not a tax-free allowance.</li>
+              <li>If eligible, submit Form 15G (generally under age 60) or Form 15H (age 60 or above) to request no TDS when your estimated final tax is nil.</li>
+              <li>If excess TDS was deducted, claim it as credit—and any eligible refund—when filing your income-tax return.</li>
+            </ul>
+            <p class="tax-note">This calculator does not deduct tax or TDS. Rules can change; confirm your position with your bank or tax adviser.</p>
+            <nav class="tax-sources" aria-label="Official tax references">
+              <span>Official references</span>
+              <a href="https://wmstatic-prd.incometaxindia.gov.in/web/guest/w/threshold-limits-under-income-tax-act" target="_blank" rel="noopener noreferrer">TDS thresholds</a>
+              <a href="https://wmstatic-prd.incometaxindia.gov.in/web/guest/w/what-are-the-payments-covered-under-the-tds-mechanism-and-the-rates-for-deduction-of-tax-at-source-" target="_blank" rel="noopener noreferrer">TDS rates</a>
+              <a href="https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/income-tax-forms?mobile-app=1" target="_blank" rel="noopener noreferrer">Forms 15G/15H</a>
+            </nav>
+          </article>
+          <div class="result-stat"><span>Added every month</span><strong id="monthly-added">₹5,000</strong></div>
+          <div class="result-stat"><span>First-quarter interest</span><strong id="first-quarter-interest">₹178</strong></div>
+        </div>
+        <div class="growth-visual" aria-label="Deposit and interest proportion">
+          <div class="bar"><span class="bar-principal" id="principal-bar"></span><span class="bar-interest" id="interest-bar"></span></div>
+          <div class="bar-key"><span>Deposits</span><span>Interest</span></div>
+        </div>
+      </section>
+    </section>
+
+    <section class="schedule shell" aria-labelledby="schedule-title">
+      <div class="schedule-head">
+        <div>
+          <p class="eyebrow">Contribution breakdown</p>
+          <h2 id="schedule-title">See how your RD grows over time</h2>
+          <p id="schedule-summary">₹5,000 is added each month. Interest is compounded quarterly.</p>
+        </div>
+        <div class="schedule-tabs" aria-label="Schedule view">
+          <button class="schedule-tab active" type="button" data-schedule="monthly" aria-pressed="true">Monthly deposits</button>
+          <button class="schedule-tab" type="button" data-schedule="quarterly" aria-pressed="false">Quarterly interest</button>
+        </div>
+      </div>
+      <div class="schedule-table-wrap">
+        <table class="schedule-table">
+          <thead id="schedule-table-head"></thead>
+          <tbody id="schedule-table-body"></tbody>
+        </table>
+      </div>
+      <p class="schedule-note" id="schedule-note">The monthly view shows each instalment added and the estimated running balance.</p>
+    </section>
+
+    <section class="bank-rates shell" aria-labelledby="bank-rates-title">
+      <div class="bank-rates-head">
+        <div>
+          <p class="eyebrow">Official bank rates</p>
+          <h2 id="bank-rates-title">Compare RD interest rates from 6 months to 5 years</h2>
+          <p>Published annual rates fetched from the banks’ official websites. Filter a bank or switch customer type to compare the available range.</p>
+        </div>
+        <div class="bank-rate-filters">
+          <label for="bank-filter">Bank
+            <select id="bank-filter">
+              <option value="all">All banks</option>
+              <option value="sbi">State Bank of India</option>
+              <option value="icici">ICICI Bank</option>
+              <option value="kotak">Kotak Mahindra Bank</option>
+              <option value="ippb">India Post Payments Bank</option>
+            </select>
+          </label>
+          <label for="customer-type">Customer
+            <select id="customer-type">
+              <option value="regular">Regular citizen</option>
+              <option value="senior">Senior citizen</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="rate-summary" aria-live="polite">
+        <div><span>Minimum shown</span><strong id="bank-rate-min">—</strong></div>
+        <div><span>Maximum shown</span><strong id="bank-rate-max">—</strong></div>
+        <div><span>Institutions listed</span><strong id="bank-count">4</strong></div>
+      </div>
+      <div class="bank-table-wrap">
+        <table class="bank-rate-table">
+          <thead>
+            <tr><th>Bank</th><th>6 months</th><th>1 year</th><th>2 years</th><th>3 years</th><th>4 years</th><th>5 years</th><th>Min–max</th><th>Source</th></tr>
+          </thead>
+          <tbody id="bank-rate-body"></tbody>
+        </table>
+      </div>
+      <p class="bank-rate-note"><strong>Important:</strong> Bank rates are percentages per annum for resident retail RDs and can change without notice. IPPB appears for regulatory clarity: it is an RBI-licensed payments bank, but payments banks cannot accept recurring or fixed deposits, so every RD tenure is marked “Not offered.” Confirm current terms on the linked official page. Sources checked 30 September 2026.</p>
+    </section>
+    <section class="explain shell" aria-labelledby="guide-title">
+      <div class="explain-grid">
+        <aside class="explain-nav" aria-label="On this page">
+          <span>On this page</span>
+          <a href="#what-is-rd">What is an RD?</a>
+          <a href="#how-interest-works">How interest works</a>
+          <a href="#before-opening">Before opening one</a>
+        </aside>
+        <article>
+          <section class="article-section" id="what-is-rd">
+            <p class="eyebrow">The basics</p>
+            <h2 id="guide-title">What is a Recurring Deposit?</h2>
+            <p>A Recurring Deposit is a fixed-term savings product. You agree to deposit the same amount every month, and the bank pays a fixed rate of interest. At the end of the tenure, you receive your deposits plus the accumulated interest.</p>
+            <p>Unlike a Fixed Deposit, you do not need a large lump sum on day one. That makes an RD useful for building a specific amount gradually—for example, an emergency buffer, course fee or planned purchase.</p>
+          </section>
+
+          <section class="article-section" id="how-interest-works">
+            <p class="eyebrow">The calculation</p>
+            <h2>How RD interest works</h2>
+            <p>Each monthly instalment earns interest for a different length of time. Your first deposit works for almost the full tenure, while the final deposit earns interest for only a short period. Many Indian banks compound RD interest quarterly.</p>
+            <div class="formula-card" aria-label="Recurring deposit maturity formula">
+              <span class="formula-label">Formula for each instalment</span>
+              <div class="formula-equation">A<sub>i</sub> = P × (1 + r ÷ n)<sup>n × t<sub>i</sub></sup></div>
+              <div class="formula-total">Total maturity &nbsp; M = A<sub>1</sub> + A<sub>2</sub> + … + A<sub>m</sub></div>
+            </div>
+            <div class="variable-grid" aria-label="Formula variables">
+              <div><strong>A<sub>i</sub></strong><span>Maturity value of one monthly instalment</span></div>
+              <div><strong>P</strong><span>Fixed amount deposited each month</span></div>
+              <div><strong>r</strong><span>Annual interest rate as a decimal; 7.1% becomes 0.071</span></div>
+              <div><strong>n</strong><span>Compounding periods per year; quarterly means 4</span></div>
+              <div><strong>t<sub>i</sub></strong><span>Years that a particular instalment remains invested</span></div>
+              <div><strong>M</strong><span>Sum of all matured monthly instalments</span></div>
+            </div>
+            <p><strong>Why every instalment is calculated separately:</strong> the first monthly deposit earns interest for longer than the last. The same compound-interest formula is applied to each deposit using its own remaining time, and the results are added to estimate the final maturity amount.</p>
+            <p>The calculator above performs that series automatically using quarterly compounding. Banks may apply deposit-date rules, rounding, penalties and tax deductions differently, so treat the result as a planning estimate and confirm the official maturity schedule before opening an RD.</p>
+            <p class="source-note">Formula methodology adapted from <a href="https://groww.in/calculators/rd-calculator" target="_blank" rel="noopener noreferrer">Groww’s RD Calculator explanation</a>.</p>
+          </section>
+
+          <section class="article-section" id="before-opening">
+            <p class="eyebrow">Decision checklist</p>
+            <h2>What to check before you open an RD</h2>
+            <div class="pros-cons">
+              <div class="mini-card">
+                <h3>Why people choose an RD</h3>
+                <ul><li>Predictable monthly saving habit</li><li>Fixed rate for the selected tenure</li><li>Easy to understand and plan around</li></ul>
+              </div>
+              <div class="mini-card">
+                <h3>Details worth comparing</h3>
+                <ul><li>Penalty for missed instalments</li><li>Premature withdrawal rules</li><li>Tax on interest and post-tax return</li></ul>
+              </div>
+            </div>
+            <p><strong>Keep inflation in view:</strong> a predictable return is useful, but the purchasing power of your maturity amount may grow more slowly than prices. Match the product to the goal and time horizon.</p>
+          </section>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="footer-row shell"><span>© 2026 finclarity.in</span><span>Educational information only — not financial advice.</span></div></footer>
+  <script src="app.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
