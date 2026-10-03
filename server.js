@@ -37,6 +37,6 @@ http.createServer((request, response) => {
     });
     fs.createReadStream(filePath).pipe(response);
   });
-}).listen(port, '127.0.0.1', () => {
-  console.log(`finclarity.in is running at http://127.0.0.1:${port}/`);
+}).listen(port, '0.0.0.0', () => {
+  console.log(`thelivufin.in is running on all network interfaces at http://0.0.0.0:${port}/`);
 });

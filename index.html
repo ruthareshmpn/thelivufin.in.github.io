@@ -5,22 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#071018">
   <meta name="description" content="Clear investment and financial saving options, with practical RD and FD calculators.">
-  <title>finclarity.in — Investment and Saving Guide</title>
+  <title>thelivufin.in — Investment and Saving Guide</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2347e3b1'/%3E%3Cpath d='M8 21h4v4H8zm6-6h4v10h-4zm6-7h4v17h-4z' fill='%23041511'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
     <nav class="nav shell" aria-label="Primary navigation">
-      <a class="brand" href="index.html" aria-label="finclarity.in home">
+      <a class="brand" href="index.html" aria-label="thelivufin.in home">
         <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 16h3v3H5zm5-5h3v8h-3zm5-5h3v13h-3" fill="currentColor"/></svg></span>
-        finclarity.in
+        thelivufin.in
       </a>
       <div class="nav-links">
         <a class="active" href="index.html">Explore</a>
         <a href="rd.html">RD calculator</a>
         <a href="fd.html">FD calculator</a>
         <a href="#post-office-schemes">Post Office schemes</a>
+        <a href="rbi-regulations.html">RBI</a><a href="sebi-regulations.html">SEBI</a><a href="other-regulators.html">Other regulators</a>
       </div>
     </nav>
   </header>
@@ -58,6 +59,9 @@
         <button class="tag-filter" type="button" data-filter="retirement" aria-pressed="false">Retirement</button>
         <button class="tag-filter" type="button" data-filter="long-term" aria-pressed="false">Long term</button>
         <button class="tag-filter" type="button" data-filter="market-linked" aria-pressed="false">Market linked</button>
+        <button class="tag-filter" type="button" data-filter="debt-securities" aria-pressed="false">Debt securities</button>
+        <button class="tag-filter" type="button" data-filter="derivatives" aria-pressed="false">Derivatives</button>
+        <button class="tag-filter" type="button" data-filter="commodities" aria-pressed="false">Commodities</button>
       </div>
       <p class="filter-status" id="filter-status" aria-live="polite">Showing all investment options</p>
       <div class="investment-grid" id="investment-grid">
@@ -86,13 +90,24 @@
         </article>
         <a class="po-scheme-tile investment-tile" data-tags="government govt-backed bank postoffice market-linked long-term pension retirement tax-benefit" href="nps.html"><span>Retirement investing</span><h3>National Pension System (NPS)</h3><strong>Market-linked</strong><p>Build a portable retirement corpus through regulated pension funds, then choose a permitted mix of lump-sum withdrawal and annuity income at exit.</p><div class="tile-tags"><span>Govt backed</span><span>Bank</span><span>Post Office</span><span>Retirement</span></div><small>View details & estimate →</small></a>
         <a class="po-scheme-tile investment-tile" data-tags="government govt-backed bank postoffice monthly-income pension retirement guaranteed" href="apy.html"><span>Guaranteed pension</span><h3>Atal Pension Yojana (APY)</h3><strong>₹1,000–₹5,000</strong><p>Choose a Government-guaranteed monthly pension from age 60. Contributions depend on joining age and the pension amount selected.</p><div class="tile-tags"><span>Govt backed</span><span>Bank</span><span>Post Office</span><span>Retirement</span></div><small>View details & contribution →</small></a>
-        <a class="po-scheme-tile investment-tile" data-tags="postoffice savings flexible government" href="post-office-savings.html"><span>Flexible savings</span><h3>Post Office Savings Account</h3><strong>4.00%</strong><p>Annual interest credit with ongoing account access.</p><small>View details & estimate →</small></a>
-        <a class="po-scheme-tile investment-tile" data-tags="postoffice long-term savings government govt-backed" href="post-office-ppf.html"><span>Long-term saving</span><h3>Public Provident Fund</h3><strong>7.10%</strong><p>Fifteen-year account with annual interest credit.</p><div class="tile-tags"><span>Govt backed</span></div><small>View details & estimate →</small></a>
+        <a class="po-scheme-tile investment-tile" data-tags="government govt-backed bonds debt-securities fixed-income long-term sovereign" href="government-securities.html"><span>Sovereign fixed income</span><h3>Government Securities</h3><strong>Coupon + market value</strong><p>Central and State Government dated securities can provide periodic coupon income, but their market price moves when interest rates change.</p><div class="tile-tags"><span>Debt securities</span><span>Govt backed</span><span>Fixed income</span></div><small>Understand G-Secs →</small></a>
+        <a class="po-scheme-tile investment-tile" data-tags="government govt-backed bonds debt-securities fixed-income short-term sovereign" href="treasury-bills.html"><span>Short-term Government borrowing</span><h3>Treasury Bills (T-Bills)</h3><strong>91 · 182 · 364 days</strong><p>Zero-coupon securities issued at a discount and redeemed at face value. Returns are known from the purchase price when held to maturity.</p><div class="tile-tags"><span>Debt securities</span><span>Govt backed</span><span>Short term</span></div><small>Understand T-Bills →</small></a>
+        <a class="po-scheme-tile investment-tile" data-tags="government govt-backed state-government bonds debt-securities fixed-income long-term sovereign sdl" href="state-development-loans.html"><span>State Government borrowing</span><h3>State Development Loans (SDLs)</h3><strong>Coupon + market value</strong><p>Dated securities issued by State Governments and Union Territories through RBI-managed auctions. They normally pay half-yearly interest and repay face value at maturity.</p><div class="tile-tags"><span>Debt securities</span><span>Govt backed</span><span>State Government</span></div><small>Understand SDLs →</small></a>
+        <a class="po-scheme-tile investment-tile" data-tags="bonds debt-securities fixed-income income credit-risk long-term" href="bonds.html"><span>Fixed-income lending instruments</span><h3>Debt Securities</h3><strong>Government · Corporate · Municipal</strong><p>Explore bonds, Government securities, T-Bills, debentures and other instruments where investors lend to an issuer for interest or a maturity value.</p><div class="tile-tags"><span>Debt securities</span><span>Fixed income</span><span>Credit risk varies</span></div><small>Explore debt-security types →</small></a>
+        <a class="po-scheme-tile investment-tile" data-tags="debentures bonds debt-securities fixed-income income credit-risk long-term corporate" href="debentures.html"><span>Company debt investment</span><h3>Debentures</h3><strong>NCD · Convertible · Secured</strong><p>Companies raise money through debentures that may pay interest, convert into equity, or repay principal at maturity. The issuer and legal terms determine the risk.</p><div class="tile-tags"><span>Debt securities</span><span>Fixed income</span><span>Issuer risk</span></div><small>Understand debentures →</small></a>
+        <a class="po-scheme-tile investment-tile" data-tags="gold market-linked diversifier long-term commodity" href="gold.html"><span>Portfolio diversifier</span><h3>Gold</h3><strong>No regular income</strong><p>Access gold through physical holdings, ETFs or eligible funds. Value follows gold prices and can fluctuate with currency and global demand.</p><div class="tile-tags"><span>Market linked</span><span>Diversifier</span></div><small>Compare gold routes →</small></a>
+        <a class="po-scheme-tile investment-tile" data-tags="derivatives market-linked futures options trading hedging leverage high-risk" href="derivatives.html"><span>Hedging and leveraged trading</span><h3>Derivatives</h3><strong>Futures · Options</strong><p>Contracts whose value comes from an underlying share, index, currency, rate or commodity. Learn margins, premiums, settlement and loss risk before trading.</p><div class="tile-tags"><span>Derivatives</span><span>Market linked</span><span>High risk</span></div><small>Understand derivatives →</small></a>
+        <a class="po-scheme-tile investment-tile" data-tags="commodities commodity market-linked futures options gold metals energy agriculture trading hedging high-risk" href="commodities.html"><span>Real assets and commodity markets</span><h3>Commodities</h3><strong>Metals · Energy · Agriculture</strong><p>Understand physical commodities, exchange-traded futures and options, commodity ETFs and the price risks unique to each route.</p><div class="tile-tags"><span>Commodities</span><span>Market linked</span><span>Hedging</span></div><small>Explore commodities →</small></a>
+        <a class="po-scheme-tile investment-tile" data-tags="infrastructure market-linked long-term income invit business-trust" href="infrastructure-investments.html"><span>Income-producing infrastructure</span><h3>Infrastructure Investment Trusts</h3><strong>InvIT units and distributions</strong><p>Own units backed by roads, power networks, telecom assets and other infrastructure. Returns can combine distributions with market-price movement.</p><div class="tile-tags"><span>InvIT</span><span>Market linked</span></div><small>Understand InvITs →</small></a>
+        <a class="po-scheme-tile investment-tile" data-tags="market-linked mutual-fund funds equity debt hybrid long-term" href="mutual-funds.html"><span>Diversified pooled investing</span><h3>Mutual Funds</h3><strong>Equity · Debt · Hybrid</strong><p>A professional manager pools investor money under a stated objective. NAV, risk, cost and tax treatment depend on the selected scheme.</p><div class="tile-tags"><span>Market linked</span><span>Diversified</span></div><small>Understand mutual funds →</small></a>
+        <a class="po-scheme-tile investment-tile" data-tags="postoffice bank savings deposits flexible government liquid" href="post-office-savings.html"><span>Everyday money and flexible access</span><h3>Savings Account</h3><strong>Post Office · Banks</strong><p>Compare Post Office and bank savings-account rates, balance slabs, interest-credit frequency and deposit protection.</p><div class="tile-tags"><span>Post Office</span><span>Bank</span><span>Flexible access</span></div><small>Compare savings accounts →</small></a>
+        <a class="po-scheme-tile investment-tile" data-tags="government govt-backed retirement long-term tax-benefit salaried provident-fund" href="epf.html"><span>Workplace retirement saving</span><h3>Employees’ Provident Fund (EPF)</h3><strong>8.25%</strong><p>Understand employee and employer contributions, the EPF/EPS split, declared interest, transfers, advances, settlement and tax.</p><div class="tile-tags"><span>EPFO</span><span>Retirement</span><span>Salaried</span></div><small>Open EPF guide →</small></a>
+        <a class="po-scheme-tile investment-tile" data-tags="postoffice government govt-backed retirement long-term tax-benefit savings provident-fund" href="ppf.html"><span>Independent long-term saving</span><h3>Public Provident Fund (PPF)</h3><strong>7.10%</strong><p>A Government-backed 15-year account with an annual deposit limit, tax-exempt interest and prescribed loan, withdrawal and extension rules.</p><div class="tile-tags"><span>Govt backed</span><span>Post Office</span><span>15 years</span></div><small>Open PPF guide →</small></a>
         <a class="po-scheme-tile investment-tile" data-tags="postoffice long-term child savings government govt-backed" href="post-office-sukanya.html"><span>Girl-child savings</span><h3>Sukanya Samriddhi Account</h3><strong>8.20%</strong><p>Long-term saving for an eligible girl child.</p><div class="tile-tags"><span>Govt backed</span></div><small>View details & estimate →</small></a>
         <a class="po-scheme-tile investment-tile" data-tags="postoffice deposits fixed long-term compound government govt-backed" href="post-office-nsc.html"><span>Compound growth</span><h3>National Savings Certificate</h3><strong>7.70%</strong><p>Five-year annual compounding with maturity payout.</p><div class="tile-tags"><span>Govt backed</span></div><small>View details & estimate →</small></a>
         <a class="po-scheme-tile investment-tile" data-tags="postoffice bank deposits fixed long-term growth government govt-backed certificate" href="post-office-kvp.html"><span>Government-backed certificate</span><h3>Kisan Vikas Patra (KVP)</h3><strong>7.50%</strong><p>Invest from ₹1,000 with no maximum limit. The current term doubles the deposit in 115 months; eligible premature closure begins after 2 years and 6 months.</p><div class="tile-tags"><span>Post Office</span><span>Authorised banks</span><span>Govt backed</span></div><small>View details & estimate →</small></a>
       </div>
-      <p class="po-rate-note">Rates shown are the Government-notified October–December 2026 rates. Some scheme rates can change in later quarters.</p>
+      <p class="po-rate-note">Small-savings rates shown are the Government-notified October–December 2026 rates. EPF uses its separately declared annual rate; future rates can change.</p>
     </section>
 
     <section class="insight-band shell" aria-labelledby="principle-title">
@@ -105,7 +120,7 @@
     </section>
   </main>
 
-  <footer><div class="footer-row shell"><span>© 2026 finclarity.in</span><span>Educational information only — not financial advice.</span></div></footer>
+  <footer><div class="footer-row shell"><span>© 2026 thelivufin.in</span><span>Educational information only — not financial advice.</span></div></footer>
   <script src="home.js"></script>
 </body>
 </html>
