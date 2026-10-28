@@ -292,6 +292,17 @@ input[type="range"] { width: 100%; margin: 16px 0 4px; accent-color: var(--accen
 .mini-card ul { margin: 0; padding-left: 19px; color: var(--muted); }
 .mini-card li + li { margin-top: 8px; }
 .sweep-pros-cons { margin-top: 18px; }
+.corporate-rate-directory { margin-top: 28px; }
+.corporate-rate-directory .bank-rates-head h3 { margin: 0; font-size: clamp(1.3rem, 2.4vw, 1.85rem); letter-spacing: -.03em; }
+.corporate-rate-directory .table-note { margin: 14px 2px 0; color: var(--muted); font-size: .82rem; line-height: 1.65; }
+.corporate-rate-directory .table-note strong { color: #d9e5ee; }
+.deposit-tax-panel { margin-top: 26px; padding: clamp(20px, 3vw, 28px); border: 1px solid rgba(244,196,107,.22); border-radius: 20px; background: linear-gradient(145deg, rgba(244,196,107,.075), rgba(9,25,34,.55)); }
+.deposit-tax-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
+.deposit-tax-head h3 { margin: 0; font-size: clamp(1.25rem, 2.4vw, 1.75rem); letter-spacing: -.03em; }
+.deposit-tax-panel .tax-intro strong { color: var(--ink); }
+.deposit-tax-panel .directory-actions { margin-top: 18px; }
+.deposit-tax-panel .tax-example { margin: 18px 0 0; }
+.tax-disclaimer { margin: 14px 0 0; color: var(--muted); font-size: .72rem; line-height: 1.55; }
 
 .compact-field { display: grid; gap: 9px; }
 .compact-field label { color: #dce8f2; font-weight: 650; }
@@ -444,7 +455,7 @@ footer { padding: 30px 0 48px; border-top: 1px solid var(--line); color: var(--m
   .value-wrap input { width: 126px; }
   .maturity { font-size: 2.65rem; }
   .result-grid { grid-template-columns: 1fr; }
-  .tax-card-head { align-items: flex-start; flex-direction: column; gap: 10px; }
+  .tax-card-head, .deposit-tax-head { align-items: flex-start; flex-direction: column; gap: 10px; }
   .tax-rates { grid-template-columns: 1fr 1fr; }
   .fd-tax-stat { grid-column: auto; }
   .fd-compound-head { align-items: flex-start; flex-direction: column; gap: 5px; }
